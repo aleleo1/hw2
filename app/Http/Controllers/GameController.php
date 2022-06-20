@@ -26,7 +26,9 @@ class GameController extends Controller
    public function result(Request $request)
    {
     $data = $request->all();
-    $result = DB::table('results')->where("name", $data['choice'])->get();
+    $newnum = DB::table('results')->where('NAME', $data['choice'])->value('NUM_INTERACTIONS') + 1;
+    DB::table('results')->where('NAME', $data['choice'])->update(['NUM_INTERACTIONS'=>$newnum]);
+    $result = DB::table('results')->where("NAME", $data['choice'])->get();
     echo json_encode($result);
    }
 
