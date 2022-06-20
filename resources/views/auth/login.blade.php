@@ -50,7 +50,11 @@
 
         </div>
 
- 
+        
+        <div class="form-group form-floating mb-3">
+
+            <input type="checkbox" class="form-control" name="remember_token">
+        </div>
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
 

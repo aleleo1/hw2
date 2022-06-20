@@ -12,10 +12,10 @@
 </head>
 <?php $__env->startSection('content'); ?>
 
-    <body>
+   
         <?php echo csrf_field(); ?>
       <input type="hidden" id="_token" value="<?php echo e(csrf_token()); ?>" />
-        
+       
         <article>
             <?php for($i = 1; $i <= 3; $i++): ?>
                 <section class="question-name">
@@ -46,7 +46,7 @@
         
 
 
-    </body>
+   
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/alexleon/Desktop/web/hw2/resources/views/home/theGame.blade.php ENDPATH**/ ?>

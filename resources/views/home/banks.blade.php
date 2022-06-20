@@ -16,7 +16,7 @@
 </head>
 @section('content')
 
-    <body>
+  {{--   <body> --}}
         @csrf
         <input type="hidden" id="_token" value="{{ csrf_token() }}" />
 
@@ -51,5 +51,5 @@
             </div>
         </footer>
 
-    </body>
+  {{--   </body> --}}
 @endsection

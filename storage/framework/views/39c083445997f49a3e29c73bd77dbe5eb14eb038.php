@@ -3,13 +3,14 @@
   
 
         <?php if(auth()->guard()->check()): ?>
+        <div class="max-div">
 
         <h1>Logged User</h1>
 
         
        
     <p>Ciao <?php echo e(auth()->user()->nome); ?></p>
-
+    </div>
         <?php endif; ?>
 
  

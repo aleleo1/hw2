@@ -49,18 +49,13 @@ class LoginController extends Controller
     public function login(Request $request)
 
     {
-
-        /* $data = $request->getCredentials(); */
-        $credentials = $request->validate(['matricola'=>'required|numeric', 'password'=>'required']);
+      
+        
+         $credentials = $request->validate(['matricola'=>'required|numeric', 'password'=>'required']);
+        $remember = $request->get('remember_token') ? true : false;
+      /*   echo json_encode($remember); */
         $fixed = array('matricola'=>(int) $credentials['matricola'],'password' =>$credentials['password']);
-        /* if (!Auth::validate($credentials)) :
-
-            return redirect()->to('login')
-
-                ->withErrors(trans('auth.failed'));
-
-        endif; */
-
+       
  
 
        
@@ -68,19 +63,15 @@ class LoginController extends Controller
  
         if(Auth::attempt($fixed))
        { 
-       
-    
-     /*   Auth::user(); */
-        return $this->authenticated($fixed);
-     /*   $user = Auth::getProvider()->retrieveByCredentials($fixed);
-       echo json_encode($user); */
+
+        return $this->authenticated($fixed, $remember);
+   
        }
         else
         return redirect()->to('login')
 
-                ->withErrors(trans('auth.failed'));
-      /*   echo json_encode($data); */
-/*       echo json_encode($fixed); */
+                ->withErrors(trans('auth.failed')); 
+
   
     
 
@@ -102,11 +93,11 @@ class LoginController extends Controller
 
      */
 
-    protected function authenticated(array $credentials)
+    protected function authenticated(array $credentials, $remember = false)
 
     {
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
-        Auth::login($user);
+        Auth::login($user, $remember);
         
         return redirect()->intended();
       /*  echo json_encode($user); */

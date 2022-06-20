@@ -49,7 +49,7 @@ class RegisterRequest extends FormRequest
             
             'cognome' =>'nullable',
 
-            'email' => 'required',
+            'email' => 'required|unique:users,email',
 
             'matricola' => 'required|min:8|unique:users,matricola',
 

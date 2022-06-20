@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/index.css">
 
     <meta name="generator" content="Hugo 0.87.0">
 
@@ -16,39 +17,9 @@
 
 
 
-    <!-- Bootstrap core CSS -->
-    <style>
-        body {
-
-            text-align: center;
-            font-family: 'arial', sans-serif;
-            background-color: beige;
-         /*    width: 100vw;
-            height:100vh; */
-            scroll-behavior: smooth;
-            scrollbar-color: brown bisque;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            
-
-        }
-
-        main{
-            background-color: burlywood;
-            height: 100%;
-        }
-    </style>
-
-    <!-- Custom styles for this template -->
-
-
-
 </head>
-
-<body>
+<?php if(auth()->guard()->check()): ?>
+<body class="auth">
 
 
 
@@ -56,7 +27,31 @@
 
 
 
-    <main>
+    <main class="mainauth">
+
+        <?php echo $__env->yieldContent('content'); ?>
+
+    </main>
+
+
+
+
+
+
+
+</body>
+<?php endif; ?>
+
+<?php if(auth()->guard()->guest()): ?>
+<body class="noauth">
+
+
+
+    <?php echo $__env->make('layouts.includes.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+
+
+    <main class="main_noauth">
 
         <?php echo $__env->yieldContent('content'); ?>
 
@@ -70,5 +65,6 @@
 
 </body>
 
+<?php endif; ?>
 </html>
 <?php /**PATH /home/alexleon/Desktop/web/hw2/resources/views/layouts/app.blade.php ENDPATH**/ ?>

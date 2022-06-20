@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/index.css">
 
     <meta name="generator" content="Hugo 0.87.0">
 
@@ -16,39 +17,9 @@
 
 
 
-    <!-- Bootstrap core CSS -->
-    <style>
-        body {
-
-            text-align: center;
-            font-family: 'arial', sans-serif;
-            background-color: beige;
-         /*    width: 100vw;
-            height:100vh; */
-            scroll-behavior: smooth;
-            scrollbar-color: brown bisque;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            
-
-        }
-
-        main{
-            background-color: burlywood;
-            height: 100%;
-        }
-    </style>
-
-    <!-- Custom styles for this template -->
-
-
-
 </head>
-
-<body>
+@auth
+<body class="auth">
 
 
 
@@ -56,7 +27,31 @@
 
 
 
-    <main>
+    <main class="mainauth">
+
+        @yield('content')
+
+    </main>
+
+
+
+
+
+
+
+</body>
+@endauth
+
+@guest
+<body class="noauth">
+
+
+
+    @include('layouts.includes.header')
+
+
+
+    <main class="main_noauth">
 
         @yield('content')
 
@@ -70,4 +65,5 @@
 
 </body>
 
+@endguest
 </html>

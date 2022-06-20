@@ -5,6 +5,7 @@
   
 
         @auth
+        <div class="max-div">
 
         <h1>Logged User</h1>
 
@@ -12,7 +13,7 @@
        {{--  <p>Ciao {{
          Auth::user->name }} ></p> --}}
     <p>Ciao {{ auth()->user()->nome}}</p>
-
+    </div>
         @endauth
 
  

@@ -64,11 +64,11 @@ class RegisterController extends Controller
         ])->save();
        
 
-        auth()->login($user);
+       /*  auth()->login($user); */
 
  
 
-        return redirect('/')->with('success', "Account successfully registered.");
+        return redirect('/login')->with('success', "Account successfully registered.");
 
     }
 
