@@ -22,8 +22,21 @@ summarizeArticle = function (a) {
 viewOriginalData = function (a) {
     let i = a[0].innerText;
     console.log(a);
-    /*  a[2].children[2].innerText = ''; */
+
     const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.getElementById('_token').value },
+        body: JSON.stringify({ id: i }),
+        redirect: 'follow'
+    };
+
+    const p = a[2].children[2]
+    console.log(p);
+    fetch('http://127.0.0.1:8000/banks/original', requestOptions).then(res => res.json()).then(result => { console.log(result); p.textContent = remove_linebreaks(result.DATA) }).catch(err => { console.log(err) });// }) */
+
+    /*  a[2].children[2].innerText = ''; */
+   /*  const requestOptions = {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: i }),
@@ -31,7 +44,7 @@ viewOriginalData = function (a) {
     };
     const p = a[2].children[2]
     console.log(p);
-    fetch('server.php', requestOptions).then(res => res.json()).then(result => { console.log(result); p.textContent = remove_linebreaks(result.DATA) }).catch(err => { console.log(err) });// })
+    fetch('server.php', requestOptions).then(res => res.json()).then(result => { console.log(result); p.textContent = remove_linebreaks(result.DATA) }).catch(err => { console.log(err) });// }) */
 
 }
 

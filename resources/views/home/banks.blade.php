@@ -18,7 +18,7 @@
 
     <body>
 
-
+        <input type="hidden" id="_token" value="{{ csrf_token() }}" />
 
 
         <h1>Le 5 grandi banche</h1>
