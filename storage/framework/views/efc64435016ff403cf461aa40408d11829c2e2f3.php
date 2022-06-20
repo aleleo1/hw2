@@ -1,0 +1,1 @@
+<p class="mt-5 mb-3 text-muted">&copy; <?php echo e(date('Y')); ?></p><?php /**PATH /home/alexleon/Desktop/web/hw2/resources/views/layouts/includes/copy.blade.php ENDPATH**/ ?>
