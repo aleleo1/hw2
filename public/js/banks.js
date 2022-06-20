@@ -33,7 +33,7 @@ viewOriginalData = function (a) {
 
     const p = a[2].children[2]
     console.log(p);
-    fetch('http://127.0.0.1:8000/banks/original', requestOptions).then(res => res.json()).then(result => { console.log(result); p.textContent = remove_linebreaks(result.DATA) }).catch(err => { console.log(err) });// }) */
+    fetch('http://127.0.0.1:8000/banks/original', requestOptions).then(res => res.text()).then(result => { console.log(result);p.textContent = remove_linebreaks(result) }).catch(err => { console.log(err) });/* p.textContent = remove_linebreaks(result.DATA) }).catch(err => { console.log(err) });// }) */
 
     /*  a[2].children[2].innerText = ''; */
    /*  const requestOptions = {
@@ -55,7 +55,7 @@ function remove_linebreaks(str) {
 Array.from(document.querySelectorAll('section')).forEach(
 
     section => {
-        console.log('HOLA HOLA HOLA');
+       console.log('HOLA');
         section.children[1].children[0].addEventListener('click', () => {
             summarizeArticle(section.children);
             section.children[1].children[0].disabled = true
@@ -76,14 +76,15 @@ sendOpenAIreq = function (data, field) {
     console.log('lel');
     const requestOptions = {
         method: 'POST',
-        headers: { "Content-Type": "text/plain" },
+        headers: { "Content-Type": "text/plain",
+        'X-CSRF-TOKEN': document.getElementById('_token').value },
         body: data,
         redirect: 'follow'
     };
 
-    fetch("openai.php", requestOptions)
+    fetch('http://127.0.0.1:8000/banks/openai', requestOptions)
         .then(response => { console.log(response); return response.status === 404 ? false : response.text() })
-        .then(result => { if (result) { handleOpenRes(result, field) } else return;/* let choices = JSON.parse(result['choices']); console.log(choices) */ })
+        .then(result => {console.log(result); if (result) { handleOpenRes(result, field) } else return;/* let choices = JSON.parse(result['choices']); console.log(choices) */ })
         .catch(error => console.log('error', error));
 
 }

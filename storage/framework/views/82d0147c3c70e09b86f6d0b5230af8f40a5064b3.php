@@ -7,14 +7,14 @@
 
 
 
-    <script type="text/javascript" src="js/banks.js"></script>
+    <script defer type="text/javascript" src="js/banks.js"></script>
 
 </head>
 <?php $__env->startSection('content'); ?>
 
     <body>
-
-
+        <?php echo csrf_field(); ?>
+        <input type="hidden" id="_token" value="<?php echo e(csrf_token()); ?>" />
 
 
         <h1>Le 5 grandi banche</h1>

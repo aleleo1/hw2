@@ -11,13 +11,13 @@
 
 
 
-    <script type="text/javascript" src="js/banks.js"></script>
+    <script defer type="text/javascript" src="js/banks.js"></script>
 
 </head>
 @section('content')
 
     <body>
-
+        @csrf
         <input type="hidden" id="_token" value="{{ csrf_token() }}" />
 
 

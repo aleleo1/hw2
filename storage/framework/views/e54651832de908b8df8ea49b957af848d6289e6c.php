@@ -23,6 +23,11 @@
                 <button class="navbutton" type="submit">Logout</button>
               </form>
             </div>
+            <div class="infoHeader">
+              <img src="/images/home-images/pic.png" class="propic">
+              <h4><?php echo e(auth()->user()->nome); ?> <?php echo e(auth()->user()->cognome); ?></h4>
+              <p><?php echo e(auth()->user()->matricola); ?></p>
+              </div>
 
         <?php endif; ?>
 

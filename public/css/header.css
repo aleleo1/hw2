@@ -20,8 +20,8 @@
 }
 
 header{
-height: 70px;
-margin-bottom: 20px;
+    height: fit-content;
+    margin-bottom: 0px;
 }
 
 
@@ -42,4 +42,50 @@ margin-bottom: 20px;
 form{
     margin-top: auto;
     margin-bottom: auto;
+}
+
+
+header h1 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size  : 50px;
+    color      : brown;
+    text-align : center;
+    flex-shrink: 1;
+    flex-grow  : 0;
+    font-weight: bolder;
+}
+
+.infoHeader {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    width: 1366px;
+    color: #020202;
+    padding: 5px;
+    background-color: bisque;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    justify-content: center;
+    column-gap: 20px;
+    height: 70px;
+    margin-top: 90px;
+}
+
+.infoHeader h4 {
+    margin: auto 0 auto 0;
+}
+
+.infoHeader p {
+    margin: auto 0 auto;
+}
+
+.propic {
+    width: 50px;
+    border-radius: 100px;
+    border: bisque;
+    background-color: #9d2424;
+    height: 50px;
+    margin: auto 0 auto 0;
+    
 }

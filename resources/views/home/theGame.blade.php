@@ -15,12 +15,13 @@
 @section('content')
 
     <body>
+        @csrf
       <input type="hidden" id="_token" value="{{ csrf_token() }}" />
         {{-- {{ $images }} --}}
         <article>
             @for ($i = 1; $i <= 3; $i++)
                 <section class="question-name">
-                    {{ $images[$i] }}
+                   <h1> {{ $titles[$i - 1] }} </h1>
                 </section>
                 <section class="choice-grid">
                     @foreach ($images[$i] as $imm)

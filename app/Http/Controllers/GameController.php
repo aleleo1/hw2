@@ -12,7 +12,7 @@ class GameController extends Controller
     echo json_encode($images); */
    /*  echo json_encode($this->images()); */
    $images = $this->images();
-    return view('home.theGame', ['images'=>$images] );
+    return view('home.theGame', ['images'=>$images], ['titles'=>['Supereroe preferito?', 'Cane preferito?', 'Gatto preferito?']] );
    }
 
    private function images(){

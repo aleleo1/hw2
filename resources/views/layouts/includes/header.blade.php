@@ -23,6 +23,11 @@
                 <button class="navbutton" type="submit">Logout</button>
               </form>
             </div>
+            <div class="infoHeader">
+              <img src="/images/home-images/pic.png" class="propic">
+              <h4>{{auth()->user()->nome}} {{auth()->user()->cognome}}</h4>
+              <p>{{auth()->user()->matricola}}</p>
+              </div>
 
         @endauth
 
