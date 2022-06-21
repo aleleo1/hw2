@@ -12,14 +12,14 @@
 </head>
 <?php $__env->startSection('content'); ?>
 
-    <body>
+   
+        <?php echo csrf_field(); ?>
       <input type="hidden" id="_token" value="<?php echo e(csrf_token()); ?>" />
-        
+       
         <article>
             <?php for($i = 1; $i <= 3; $i++): ?>
                 <section class="question-name">
-                    <?php echo e($images[$i]); ?>
-
+                   <h1> <?php echo e($titles[$i - 1]); ?> </h1>
                 </section>
                 <section class="choice-grid">
                     <?php $__currentLoopData = $images[$i]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $imm): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -46,7 +46,7 @@
         
 
 
-    </body>
+   
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/aletini/Desktop/hw/hw2/resources/views/home/theGame.blade.php ENDPATH**/ ?>

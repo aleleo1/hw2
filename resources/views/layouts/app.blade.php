@@ -37,7 +37,7 @@
 
 
 
-
+    @include('layouts.includes.footer')
 
 </body>
 @endauth
@@ -62,8 +62,10 @@
 
 
 
-
+    @include('layouts.includes.footer')
 </body>
 
 @endguest
+
+
 </html>

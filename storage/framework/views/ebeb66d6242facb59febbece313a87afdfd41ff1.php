@@ -1,6 +1,6 @@
 <?php $__env->startSection('content'); ?>
 
-    <form method="post" action="<?php echo e(route('register.perform')); ?>">
+    <form class="form_master" method="post" action="<?php echo e(route('register.perform')); ?>">
 
  
 
@@ -10,11 +10,11 @@
 
         
 
-        <h1 class="title">Register</h1>
+        <h1 class="title">Registrati</h1>
 
         <div class="form_question">
 
-            <input type="text" class="form-control" name="nome" value="<?php echo e(old('nome')); ?>" placeholder="nome"  autofocus>
+            <input type="text" class="form-control" name="nome" value="<?php echo e(old('nome')); ?>" error="AAAA" placeholder="nome" required="required" autofocus>
 
             <label for="floatingName" >Nome</label>
 
@@ -28,7 +28,7 @@
 
         <div class="form_question">
 
-            <input type="text" class="form-control" name="cognome" value="<?php echo e(old('cognome')); ?>" placeholder="cognome"  autofocus>
+            <input type="text" class="form-control" name="cognome" value="<?php echo e(old('cognome')); ?>" placeholder="cognome" required="required" autofocus>
 
             <label for="floatingSurname">Cognome</label>
 
@@ -45,7 +45,7 @@
 
             <input type="email" class="form-control" name="email" value="<?php echo e(old('email')); ?>" placeholder="name@example.com" required="required" autofocus>
 
-            <label for="floatingEmail">Email address</label>
+            <label for="floatingEmail">Indirizzo Email</label>
 
             <?php if($errors->has('email')): ?>
 
@@ -61,7 +61,7 @@
 
             <input type="text" class="form-control" name="matricola" value="<?php echo e(old('matricola')); ?>" placeholder="matricola" required="required" autofocus>
 
-            <label for="floatingMatricola">matricola</label>
+            <label for="floatingMatricola">Matricola</label>
 
             <?php if($errors->has('matricola')): ?>
 
@@ -91,9 +91,9 @@
 
         <div class="form_question">
 
-            <input type="password" class="form-control" name="password_confirmation" value="<?php echo e(old('password_confirmation')); ?>" placeholder="Confirm Password" required="required">
+            <input type="password" class="form-control" name="password_confirmation" value="<?php echo e(old('password_confirmation')); ?>" placeholder="Conferma Password" required="required">
 
-            <label for="floatingConfirmPassword">Confirm Password</label>
+            <label for="floatingConfirmPassword">Conferma Password</label>
 
             <?php if($errors->has('password_confirmation')): ?>
 

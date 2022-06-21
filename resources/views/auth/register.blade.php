@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form class="forms_master" method="post" action="{{ route('register.perform') }}">
+    <form class="form_master" method="post" action="{{ route('register.perform') }}">
 
  
 
@@ -12,11 +12,11 @@
 
         
 
-        <h1 class="title">Register</h1>
+        <h1 class="title">Registrati</h1>
 
         <div class="form_question">
 
-            <input type="text" class="form-control" name="nome" value="{{ old('nome') }}" placeholder="nome"  autofocus>
+            <input type="text" class="form-control" name="nome" value="{{ old('nome') }}" placeholder="nome" required="required" autofocus>
 
             <label for="floatingName" >Nome</label>
 
@@ -30,7 +30,7 @@
 
         <div class="form_question">
 
-            <input type="text" class="form-control" name="cognome" value="{{ old('cognome') }}" placeholder="cognome"  autofocus>
+            <input type="text" class="form-control" name="cognome" value="{{ old('cognome') }}" placeholder="cognome" required="required" autofocus>
 
             <label for="floatingSurname">Cognome</label>
 
@@ -47,7 +47,7 @@
 
             <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="name@example.com" required="required" autofocus>
 
-            <label for="floatingEmail">Email address</label>
+            <label for="floatingEmail">Indirizzo Email</label>
 
             @if ($errors->has('email'))
 
@@ -63,7 +63,7 @@
 
             <input type="text" class="form-control" name="matricola" value="{{ old('matricola') }}" placeholder="matricola" required="required" autofocus>
 
-            <label for="floatingMatricola">matricola</label>
+            <label for="floatingMatricola">Matricola</label>
 
             @if ($errors->has('matricola'))
 
@@ -93,9 +93,9 @@
 
         <div class="form_question">
 
-            <input type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirm Password" required="required">
+            <input type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Conferma Password" required="required">
 
-            <label for="floatingConfirmPassword">Confirm Password</label>
+            <label for="floatingConfirmPassword">Conferma Password</label>
 
             @if ($errors->has('password_confirmation'))
 

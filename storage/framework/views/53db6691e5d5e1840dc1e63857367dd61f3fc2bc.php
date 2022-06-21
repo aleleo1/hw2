@@ -2,7 +2,7 @@
 
 <?php $__env->startSection('content'); ?>
 
-    <form method="post" action="<?php echo e(route('login.perform')); ?>">
+    <form method="post" class="form_master" action="<?php echo e(route('login.perform')); ?>">
 
         
 
@@ -18,11 +18,11 @@
 
  
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="number" class="form-control" name="matricola" value="<?php echo e(old('matricola')); ?>" placeholder="matricola" required="required" autofocus>
 
-            <label for="floatingMatricola">matricola</label>
+            <label for="floatingMatricola">Matricola</label>
 
             <?php if($errors->has('matricola')): ?>
 
@@ -34,7 +34,7 @@
 
         
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="password" class="form-control" name="password" value="<?php echo e(old('password')); ?>" placeholder="Password" required="required">
 
@@ -49,16 +49,16 @@
         </div>
 
         
-        <div class="form-group form-floating mb-3">
+        <div class="form_remember">
 
             <input type="checkbox" class="form-control" name="remember_token">
         </div>
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        <button class="form_submit" type="submit">Login</button>
 
         
 
-        <?php echo $__env->make('layouts.includes.copy', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+      
 
     </form>
 

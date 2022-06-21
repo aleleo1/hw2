@@ -1,1 +1,1 @@
-<p class="mt-5 mb-3 text-muted">&copy; <?php echo e(date('Y')); ?></p><?php /**PATH /home/aletini/Desktop/hw/hw2/resources/views/layouts/includes/copy.blade.php ENDPATH**/ ?>
+<p>&copy; <?php echo e(date('Y')); ?></p><?php /**PATH /home/aletini/Desktop/hw/hw2/resources/views/layouts/includes/copy.blade.php ENDPATH**/ ?>

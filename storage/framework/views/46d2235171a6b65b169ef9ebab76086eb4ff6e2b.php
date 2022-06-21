@@ -37,7 +37,7 @@
 
 
 
-
+    <?php echo $__env->make('layouts.includes.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 </body>
 <?php endif; ?>
@@ -62,9 +62,11 @@
 
 
 
-
+    <?php echo $__env->make('layouts.includes.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 
 <?php endif; ?>
+
+
 </html>
 <?php /**PATH /home/aletini/Desktop/hw/hw2/resources/views/layouts/app.blade.php ENDPATH**/ ?>
