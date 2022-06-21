@@ -45,9 +45,9 @@ class RegisterRequest extends FormRequest
     {
 
         return [
-            'nome' =>'nullable',
+            'nome' =>'required',
             
-            'cognome' =>'nullable',
+            'cognome' =>'required',
 
             'email' => 'required|unique:users,email',
 

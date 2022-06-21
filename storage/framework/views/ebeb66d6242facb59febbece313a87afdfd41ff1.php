@@ -10,30 +10,38 @@
 
         
 
-        <h1 class="h3 mb-3 fw-normal">Register</h1>
+        <h1 class="title">Register</h1>
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="text" class="form-control" name="nome" value="<?php echo e(old('nome')); ?>" placeholder="nome"  autofocus>
 
             <label for="floatingName" >Nome</label>
 
-        
+            <?php if($errors->has('nome')): ?>
+
+            <span class="form_error"><?php echo e($errors->first('nome')); ?></span>
+
+        <?php endif; ?>
 
         </div>
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="text" class="form-control" name="cognome" value="<?php echo e(old('cognome')); ?>" placeholder="cognome"  autofocus>
 
             <label for="floatingSurname">Cognome</label>
 
-          
+            <?php if($errors->has('cognome')): ?>
+
+                <span class="form_error"><?php echo e($errors->first('cognome')); ?></span>
+
+            <?php endif; ?>
 
         </div>
  
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="email" class="form-control" name="email" value="<?php echo e(old('email')); ?>" placeholder="name@example.com" required="required" autofocus>
 
@@ -41,7 +49,7 @@
 
             <?php if($errors->has('email')): ?>
 
-                <span class="text-danger text-left"><?php echo e($errors->first('email')); ?></span>
+                <span class="form_error"><?php echo e($errors->first('email')); ?></span>
 
             <?php endif; ?>
 
@@ -49,7 +57,7 @@
 
  
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="text" class="form-control" name="matricola" value="<?php echo e(old('matricola')); ?>" placeholder="matricola" required="required" autofocus>
 
@@ -57,7 +65,7 @@
 
             <?php if($errors->has('matricola')): ?>
 
-                <span class="text-danger text-left"><?php echo e($errors->first('matricola')); ?></span>
+                <span class="form_error"><?php echo e($errors->first('matricola')); ?></span>
 
             <?php endif; ?>
 
@@ -65,7 +73,7 @@
 
         
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="password" class="form-control" name="password" value="<?php echo e(old('password')); ?>" placeholder="Password" required="required">
 
@@ -73,7 +81,7 @@
 
             <?php if($errors->has('password')): ?>
 
-                <span class="text-danger text-left"><?php echo e($errors->first('password')); ?></span>
+                <span class="form_error"><?php echo e($errors->first('password')); ?></span>
 
             <?php endif; ?>
 
@@ -81,7 +89,7 @@
 
  
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="password" class="form-control" name="password_confirmation" value="<?php echo e(old('password_confirmation')); ?>" placeholder="Confirm Password" required="required">
 
@@ -89,7 +97,7 @@
 
             <?php if($errors->has('password_confirmation')): ?>
 
-                <span class="text-danger text-left"><?php echo e($errors->first('password_confirmation')); ?></span>
+                <span class="form_error"><?php echo e($errors->first('password_confirmation')); ?></span>
 
             <?php endif; ?>
 
@@ -97,7 +105,7 @@
 
  
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+        <button class="form_submit" type="submit">Register</button>
 
         
 

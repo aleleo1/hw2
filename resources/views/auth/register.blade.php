@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form method="post" action="{{ route('register.perform') }}">
+    <form class="master" method="post" action="{{ route('register.perform') }}">
 
  
 
@@ -12,30 +12,38 @@
 
         
 
-        <h1 class="h3 mb-3 fw-normal">Register</h1>
+        <h1 class="title">Register</h1>
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="text" class="form-control" name="nome" value="{{ old('nome') }}" placeholder="nome"  autofocus>
 
             <label for="floatingName" >Nome</label>
 
-        
+            @if ($errors->has('nome'))
+
+            <span class="form_error">{{ $errors->first('nome') }}</span>
+
+        @endif
 
         </div>
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="text" class="form-control" name="cognome" value="{{ old('cognome') }}" placeholder="cognome"  autofocus>
 
             <label for="floatingSurname">Cognome</label>
 
-          
+            @if ($errors->has('cognome'))
+
+                <span class="form_error">{{ $errors->first('cognome') }}</span>
+
+            @endif
 
         </div>
  
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="name@example.com" required="required" autofocus>
 
@@ -43,7 +51,7 @@
 
             @if ($errors->has('email'))
 
-                <span class="text-danger text-left">{{ $errors->first('email') }}</span>
+                <span class="form_error">{{ $errors->first('email') }}</span>
 
             @endif
 
@@ -51,7 +59,7 @@
 
  
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="text" class="form-control" name="matricola" value="{{ old('matricola') }}" placeholder="matricola" required="required" autofocus>
 
@@ -59,7 +67,7 @@
 
             @if ($errors->has('matricola'))
 
-                <span class="text-danger text-left">{{ $errors->first('matricola') }}</span>
+                <span class="form_error">{{ $errors->first('matricola') }}</span>
 
             @endif
 
@@ -67,7 +75,7 @@
 
         
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" required="required">
 
@@ -75,7 +83,7 @@
 
             @if ($errors->has('password'))
 
-                <span class="text-danger text-left">{{ $errors->first('password') }}</span>
+                <span class="form_error">{{ $errors->first('password') }}</span>
 
             @endif
 
@@ -83,7 +91,7 @@
 
  
 
-        <div class="form-group form-floating mb-3">
+        <div class="form_question">
 
             <input type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirm Password" required="required">
 
@@ -91,7 +99,7 @@
 
             @if ($errors->has('password_confirmation'))
 
-                <span class="text-danger text-left">{{ $errors->first('password_confirmation') }}</span>
+                <span class="form_error">{{ $errors->first('password_confirmation') }}</span>
 
             @endif
 
@@ -99,7 +107,7 @@
 
  
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+        <button class="form_submit" type="submit">Register</button>
 
         
 
