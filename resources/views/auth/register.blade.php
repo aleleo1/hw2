@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form class="master" method="post" action="{{ route('register.perform') }}">
+    <form class="forms_master" method="post" action="{{ route('register.perform') }}">
 
  
 
