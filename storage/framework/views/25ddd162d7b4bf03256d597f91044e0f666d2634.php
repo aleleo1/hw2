@@ -23,6 +23,6 @@
         </div>
 
     <?php endif; ?>
-    <?php echo $__env->make('layouts.includes.copy', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+ 
 </footer>
 <?php /**PATH /home/aletini/Desktop/hw/hw2/resources/views/layouts/includes/footer.blade.php ENDPATH**/ ?>

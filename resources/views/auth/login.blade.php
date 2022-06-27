@@ -12,7 +12,7 @@
        
         
 
-        <h1 class="h3 mb-3 fw-normal">Login</h1>
+        <h1 >Login</h1>
 
  
 
@@ -28,7 +28,7 @@
 
             @if ($errors->has('matricola'))
 
-                <span class="text-danger text-left">{{ $errors->first('matricola') }}</span>
+                <span class="form_error">{{ $errors->first('matricola') }}</span>
 
             @endif
 
@@ -44,7 +44,7 @@
 
             @if ($errors->has('password'))
 
-                <span class="text-danger text-left">{{ $errors->first('password') }}</span>
+                <span class="form_error">{{ $errors->first('password') }}</span>
 
             @endif
 

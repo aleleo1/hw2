@@ -61,7 +61,7 @@
 
         <div class="form_question">
 
-            <input type="text" class="form-control" name="matricola" value="{{ old('matricola') }}" placeholder="matricola" required="required" autofocus>
+            <input type="number" class="form-control" name="matricola" value="{{ old('matricola') }}" placeholder="matricola" required="required" autofocus>
 
             <label for="floatingMatricola">Matricola</label>
 

@@ -9,6 +9,7 @@
 
             <h4>{{ auth()->user()->nome }} {{ auth()->user()->cognome }}</h4>
             <p>{{ auth()->user()->matricola }}</p>
+            @include('layouts.includes.copy');
         </div>
     
 
@@ -23,5 +24,5 @@
         </div>
 
     @endguest
-    @include('layouts.includes.copy')
+ 
 </footer>

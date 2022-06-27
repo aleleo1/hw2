@@ -47,7 +47,7 @@
 
 .form_question{
     display: flex;
-flex-direction: column-reverse;
+flex-direction: column;
 row-gap: 5px;   
 }
 
@@ -69,3 +69,8 @@ text-align: center;
 
 .form_submit{  width: 120px;
     margin: auto;}
+
+
+    .form_error{
+   color: red;
+    }

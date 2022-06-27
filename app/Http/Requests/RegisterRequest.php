@@ -51,7 +51,7 @@ class RegisterRequest extends FormRequest
 
             'email' => 'required|unique:users,email',
 
-            'matricola' => 'required|min:8|unique:users,matricola',
+            'matricola' => 'required|min:8|unique:users,matricola|numeric',
 
             'password' => 'required|min:8',
 

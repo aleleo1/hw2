@@ -14,7 +14,7 @@
 
         <div class="form_question">
 
-            <input type="text" class="form-control" name="nome" value="<?php echo e(old('nome')); ?>" error="AAAA" placeholder="nome" required="required" autofocus>
+            <input type="text" class="form-control" name="nome" value="<?php echo e(old('nome')); ?>" placeholder="nome" required="required" autofocus>
 
             <label for="floatingName" >Nome</label>
 
@@ -59,7 +59,7 @@
 
         <div class="form_question">
 
-            <input type="text" class="form-control" name="matricola" value="<?php echo e(old('matricola')); ?>" placeholder="matricola" required="required" autofocus>
+            <input type="number" class="form-control" name="matricola" value="<?php echo e(old('matricola')); ?>" placeholder="matricola" required="required" autofocus>
 
             <label for="floatingMatricola">Matricola</label>
 

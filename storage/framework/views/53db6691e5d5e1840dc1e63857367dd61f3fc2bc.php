@@ -10,7 +10,7 @@
        
         
 
-        <h1 class="h3 mb-3 fw-normal">Login</h1>
+        <h1 >Login</h1>
 
  
 
@@ -26,7 +26,7 @@
 
             <?php if($errors->has('matricola')): ?>
 
-                <span class="text-danger text-left"><?php echo e($errors->first('matricola')); ?></span>
+                <span class="form_error"><?php echo e($errors->first('matricola')); ?></span>
 
             <?php endif; ?>
 
@@ -42,7 +42,7 @@
 
             <?php if($errors->has('password')): ?>
 
-                <span class="text-danger text-left"><?php echo e($errors->first('password')); ?></span>
+                <span class="form_error"><?php echo e($errors->first('password')); ?></span>
 
             <?php endif; ?>
 
