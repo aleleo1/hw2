@@ -34,18 +34,21 @@
                     {{-- {{json_encode($likes)}} --}}
 
                     {{-- {{ json_encode($likes[$data->ID]) }} --}}
-                    <label for="likes">Riassunti piaciuti:
+                    <label id={{'lab'.$data->ID}} for="likes">Riassunti piaciuti
+                        ({{ isset($likes[$data->ID]) ? count($likes[$data->ID]) : 0 }})
+                        :
 
-                        <select class="summSelect" id={{'sel'.$data->ID}} name="likes">
+                        <select class="summSelect" id={{ 'sel' . $data->ID }} name="likes">
                             @if (in_array($data->ID, array_keys($likes)))
                                 @foreach ($likes[$data->ID] as $like)
-                                    <option id={{'opt'.$like['id']}} class="like" data-section={{ $data->ID }}
+                                    <option id={{ 'opt' . $like['id'] }} class="like" data-section={{ $data->ID }}
                                         data-attribute={{ $like['id'] }}>{{ $like['date'] }}</option>
                                 @endforeach
-                            @else
-                            <option class="default">Nessun like aggiunto</option>
+                                {{-- @else
+                            <option class="default">Nessun like aggiunto</option> --}}
                             @endif
                         </select>
+
                     </label>
                     {{-- <button class="summButton dislike" data-section={{$data->ID}} data-attribute={{$like['id']}}>Dislike</button> --}}
 

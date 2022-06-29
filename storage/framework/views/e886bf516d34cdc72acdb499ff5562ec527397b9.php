@@ -30,19 +30,21 @@
                     
 
                     
-                    <label for="likes">Riassunti piaciuti:
+                    <label id=<?php echo e('lab'.$data->ID); ?> for="likes">Riassunti piaciuti
+                        (<?php echo e(isset($likes[$data->ID]) ? count($likes[$data->ID]) : 0); ?>)
+                        :
 
-                        <select class="summSelect" id=<?php echo e('sel'.$data->ID); ?> name="likes">
+                        <select class="summSelect" id=<?php echo e('sel' . $data->ID); ?> name="likes">
                             <?php if(in_array($data->ID, array_keys($likes))): ?>
                                 <?php $__currentLoopData = $likes[$data->ID]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $like): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option id=<?php echo e('opt'.$like['id']); ?> class="like" data-section=<?php echo e($data->ID); ?>
+                                    <option id=<?php echo e('opt' . $like['id']); ?> class="like" data-section=<?php echo e($data->ID); ?>
 
                                         data-attribute=<?php echo e($like['id']); ?>><?php echo e($like['date']); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php else: ?>
-                            <option class="default">Nessun like aggiunto</option>
+                                
                             <?php endif; ?>
                         </select>
+
                     </label>
                     
 

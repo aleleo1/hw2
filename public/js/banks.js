@@ -23,9 +23,10 @@ Array.from(document.querySelectorAll('section')).forEach(
 )
 
 Array.from(document.querySelectorAll('.like')).forEach(op => {
+    op.innerText = new Date(op.innerText);
     op.addEventListener('click', (event) => {
         console.log(event.target);
-        showLiked(event.target)
+        showLiked(event.target);
     })
 })
 
@@ -42,14 +43,15 @@ dislike = function (t) {
     fetch('http://127.0.0.1:8000/banks/dislike', requestOptions).then(res => res.text()).then(response => {
         console.log(response);
         viewOriginalData(document.getElementById(t.dataset.section).children);
-        removeOpt(t.dataset.attribute)
+        removeOpt(t.dataset.attribute);
+        updateSelCount(t.dataset.section)
         /*  window.location.reload(); */
         /*    document.getElementById(t.dataset.section).children[2].children[2].textContent = response; */
     }).catch(err => { console.log(err) })
 }
 
-removeOpt = function(id){
-   document.getElementById('opt'+id).remove();
+removeOpt = function (id) {
+    document.getElementById('opt' + id).remove();
 }
 
 showLiked = function (t) {
@@ -183,10 +185,12 @@ addLike = function (response, i) {
     console.log(response.res);
     const sel = document.getElementById('sel' + i)
     console.log(sel);
-    const optclone = sel.children[0].cloneNode();
+
+    const optclone = sel.children[0] ? sel.children[0].cloneNode() : document.createElement('option');
+    optclone.dataset.section = i;
     optclone.dataset.attribute = response.res.id;
     optclone.innerText = new Date(response.res.date);
-    optclone.id = 'opt'+response.res.id;
+    optclone.id = 'opt' + response.res.id;
     console.log(optclone);
     optclone.addEventListener('click', (event) => {
         console.log(event.target);
@@ -194,7 +198,14 @@ addLike = function (response, i) {
     })
     sel.appendChild(optclone);
     viewOriginalData(document.getElementById(i).children);
+    updateSelCount(i)
 };
+
+updateSelCount = function (i) {
+    let count = Array.from(document.getElementById('sel' + i).children).length;
+    document.getElementById('lab' + i).firstChild.textContent = `Riassunti piaciuti (${count}) : ` 
+    console.log(document.getElementById('lab' + i).firstChild.textContent);
+}
 
 showError = function (result, i) {
     console.log(result);
