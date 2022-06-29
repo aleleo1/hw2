@@ -82,6 +82,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::post('/theGame/result', [GameController::class, 'result'])->name('theGame.result');
         Route::post('/banks/original', [BanksController::class, 'original'])->name('banks.original');
         Route::post('/banks/openai', [BanksController::class, 'openai_sumup'])->name('banks.openai');
+        Route::post('/banks/like', [BanksController::class, 'like']);
+        Route::post('/banks/show_like', [BanksController::class, 'show_like']);
+        Route::post('/banks/dislike', [BanksController::class, 'dislike']);
     });
 
 });

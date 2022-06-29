@@ -1,1 +1,1 @@
-<p>&copy; {{date('Y')}}</p>
+<p class="elem">&copy; {{date('Y')}}</p>

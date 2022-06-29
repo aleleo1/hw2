@@ -1,10 +1,94 @@
+Array.from(document.querySelectorAll('section')).forEach(
 
-let ID = '449e2a8db6c6e01'
-let SECRET = 'b5a8443d64b167b9c94f089bc3e36584b8b08b7e'
-let token = ''
-let counter = 0;
+    section => {
+        console.log('HOLA');
+        section.children[1].children[0].addEventListener('click', () => {
+            summarizeArticle(section.children);
+            section.children[1].children[0].disabled = true
+            section.children[1].children[1].disabled = false;
+        });
+        section.children[1].children[1].addEventListener('click', () => {
+            viewOriginalData(section.children);
+            section.children[1].children[0].disabled = false;
+            /*   
+              section.children[1].children[1].disabled = true; */
+        });
+        section.children[1].children[2].addEventListener('click', (event) => {
+            /*   console.log( section.children[1].children[2]); */
+            /*  event.preventDefault; */
+            likeArticle(section.children);
 
-console.log('YOLO');
+        });
+    }
+)
+
+Array.from(document.querySelectorAll('.like')).forEach(op => {
+    op.addEventListener('click', (event) => {
+        console.log(event.target);
+        showLiked(event.target)
+    })
+})
+
+dislike = function (t) {
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.getElementById('_token').value
+        },
+        body: JSON.stringify({ id: t.dataset.attribute }),
+        redirect: 'follow'
+    };
+    fetch('http://127.0.0.1:8000/banks/dislike', requestOptions).then(res => res.text()).then(response => {
+        console.log(response);
+        viewOriginalData(document.getElementById(t.dataset.section).children);
+        removeOpt(t.dataset.attribute)
+        /*  window.location.reload(); */
+        /*    document.getElementById(t.dataset.section).children[2].children[2].textContent = response; */
+    }).catch(err => { console.log(err) })
+}
+
+removeOpt = function(id){
+   document.getElementById('opt'+id).remove();
+}
+
+showLiked = function (t) {
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.getElementById('_token').value
+        },
+        body: JSON.stringify({ id: t.dataset.attribute }),
+        redirect: 'follow'
+    };
+    fetch('http://127.0.0.1:8000/banks/show_like', requestOptions).then(res => res.text()).then(response => {
+        console.log(response);
+        const section = document.getElementById(t.dataset.section);
+        const sec = section.children[2].children[2];
+        sec.textContent = response;
+        const ll = document.getElementById('likeB' + t.dataset.section);
+        lclone = ll.cloneNode(true);
+        ll.parentNode.replaceChild(lclone, ll);
+        const lb = document.getElementById('likeB' + t.dataset.section);
+        lb.classList.remove('likeButton');
+
+        lb.classList.add('likedButton');
+        lb.textContent = 'Dislike';
+
+        lb.addEventListener('click', (event) => {
+            /*  event.preventDefault(); */
+            dislike(event.target);
+        });
+        lb.dataset.attribute = t.dataset.attribute;
+        lb.dataset.section = t.dataset.section;
+        section.children[1].children[0].disabled = true
+        section.children[1].children[1].disabled = false;
+        console.log(lb);
+
+    }).catch(err => { console.log(err) })
+
+}
 
 summarizeArticle = function (a) {
     console.log(a);
@@ -25,66 +109,111 @@ viewOriginalData = function (a) {
 
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': document.getElementById('_token').value },
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.getElementById('_token').value
+        },
         body: JSON.stringify({ id: i }),
         redirect: 'follow'
     };
 
     const p = a[2].children[2]
     console.log(p);
-    fetch('http://127.0.0.1:8000/banks/original', requestOptions).then(res => res.text()).then(result => { console.log(result);p.textContent = remove_linebreaks(result) }).catch(err => { console.log(err) });/* p.textContent = remove_linebreaks(result.DATA) }).catch(err => { console.log(err) });// }) */
+    fetch('http://127.0.0.1:8000/banks/original', requestOptions).then(res => res.text()).then(result => {
+        console.log(result); p.textContent = remove_linebreaks(result);
+        const lb = document.getElementById('likeB' + i);
+        if (Array.from(lb.classList).includes('likedButton')) {
+            toggleLikeB(lb, i);
 
-    /*  a[2].children[2].innerText = ''; */
-   /*  const requestOptions = {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: i }),
-        redirect: 'follow'
-    };
-    const p = a[2].children[2]
-    console.log(p);
-    fetch('server.php', requestOptions).then(res => res.json()).then(result => { console.log(result); p.textContent = remove_linebreaks(result.DATA) }).catch(err => { console.log(err) });// }) */
+        };
 
+    }).catch(err => { console.log(err) });/* p.textContent = remove_linebreaks(result.DATA) }).catch(err => { console.log(err) });// }) */
+
+
+}
+
+toggleLikeB = function (ll, i) {
+
+    const section = document.getElementById(i);
+    /*  const sec = section.children[2].children[2]; */
+    lclone = ll.cloneNode(true);
+
+    ll.parentNode.replaceChild(lclone, ll);
+    const lb = document.getElementById('likeB' + i);
+    lb.classList.remove('likedButton');
+    lb.classList.add('likeButton');
+    lb.textContent = 'Like';
+    lb.addEventListener('click', () => { likeArticle(section.children) })
+    /*   lb.removeEventListener('click', (event) => {
+          event.preventDefault();
+          dislike(event.target);
+      }); */
+    lb.dataset.attribute = '';
+
+    console.log(lb);
 }
 
 function remove_linebreaks(str) {
     return str.replace(/[\r\n]+/gm, "").replace('}1', '}');
 }
 
-Array.from(document.querySelectorAll('section')).forEach(
-
-    section => {
-       console.log('HOLA');
-        section.children[1].children[0].addEventListener('click', () => {
-            summarizeArticle(section.children);
-            section.children[1].children[0].disabled = true
-            section.children[1].children[1].disabled = false;
-        });
-        section.children[1].children[1].addEventListener('click', () => {
-            viewOriginalData(section.children);
-            section.children[1].children[0].disabled = false;
-            section.children[1].children[1].disabled = true;
-        });
-
-    })
 
 
 
-
-sendOpenAIreq = function (data, field) {
-    console.log('lel');
+likeArticle = function (data) {
+    /*   console.log(data[2].children[2]); */
+    let i = data[0].innerText;
+    const input = data[2].children[2].innerText;
+    console.log(input);
     const requestOptions = {
         method: 'POST',
-        headers: { "Content-Type": "text/plain",
-        'X-CSRF-TOKEN': document.getElementById('_token').value },
+        headers: {
+            "Content-Type": "text/plain",
+            'X-CSRF-TOKEN': document.getElementById('_token').value
+        },
+        body: JSON.stringify({ id: i, data: input }),
+        redirect: 'follow'
+    };
+    console.log(requestOptions)
+    fetch('http://127.0.0.1:8000/banks/like', requestOptions).then(async response => { return { status: response.status, res: await response.json() } })
+        .then(result => { console.log(result); result.status === 200 ? addLike(result, i) : showError(result, i)/*  window.location.reload(); */ }).catch(error => console.log('error', error));
+}
+
+addLike = function (response, i) {
+    console.log(response.res);
+    const sel = document.getElementById('sel' + i)
+    console.log(sel);
+    const optclone = sel.children[0].cloneNode();
+    optclone.dataset.attribute = response.res.id;
+    optclone.innerText = new Date(response.res.date);
+    optclone.id = 'opt'+response.res.id;
+    console.log(optclone);
+    optclone.addEventListener('click', (event) => {
+        console.log(event.target);
+        showLiked(event.target)
+    })
+    sel.appendChild(optclone);
+    viewOriginalData(document.getElementById(i).children);
+};
+
+showError = function (result, i) {
+    console.log(result);
+}
+
+sendOpenAIreq = function (data, field) {
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            'X-CSRF-TOKEN': document.getElementById('_token').value
+        },
         body: data,
         redirect: 'follow'
     };
 
     fetch('http://127.0.0.1:8000/banks/openai', requestOptions)
         .then(response => { console.log(response); return response.status === 404 ? false : response.text() })
-        .then(result => {console.log(result); if (result) { handleOpenRes(result, field) } else return;/* let choices = JSON.parse(result['choices']); console.log(choices) */ })
+        .then(result => { console.log(result); if (result) { handleOpenRes(result, field) } else return; })
         .catch(error => console.log('error', error));
 
 }
@@ -103,4 +232,3 @@ const handleOpenRes = function (result, field) {
     p.textContent = sumup;
 }
 
-/* JSON.parse('{"id":"cmpl-5Cp9rlawhmMNyu000el774u25z7x2","object":"text_completion","created":1653738271,"model":"text-davinci-002","choices":[{"text":" La HSBC è una banca con sede a Londra. È la seconda azienda del mondo per asset. Ha tratto profitto da evasori fiscali, narcotrafficanti ed altri clienti.","index":0,"logprobs":null,"finish_reason":"stop"}]}' */

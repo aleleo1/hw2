@@ -1,8 +1,8 @@
 @if(isset ($errors) && count($errors) > 0)
 
-    <div class="alert alert-warning" role="alert">
+    <div >
 
-        <ul class="list-unstyled mb-0">
+        <ul >
 
             @foreach($errors->all() as $error)
 
@@ -26,9 +26,9 @@
 
         @foreach ($data as $msg)
 
-            <div class="alert alert-warning" role="alert">
+            <div>
 
-                <i class="fa fa-check"></i>
+                <i ></i>
 
                 {{ $msg }}
 
@@ -38,9 +38,9 @@
 
     @else
 
-        <div class="alert alert-warning" role="alert">
+        <div>
 
-            <i class="fa fa-check"></i>
+            <i ></i>
 
             {{ $data }}
 

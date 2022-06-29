@@ -1,1 +1,1 @@
-<p>&copy; <?php echo e(date('Y')); ?></p><?php /**PATH /home/aletini/Desktop/hw/hw2/resources/views/layouts/includes/copy.blade.php ENDPATH**/ ?>
+<p class="elem">&copy; <?php echo e(date('Y')); ?></p><?php /**PATH /home/aletini/Desktop/hw/hw2/resources/views/layouts/includes/copy.blade.php ENDPATH**/ ?>

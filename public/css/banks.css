@@ -1,14 +1,3 @@
-/* html {
-    scroll-behavior: smooth;
-}
- */
-
-
-
-
-
-
-
 
 a {
     color          : #000;
@@ -163,9 +152,22 @@ footer {
 
 .summButtons {
     display        : flex;
-    flex-direction : row;
+    flex-direction : column;
+    row-gap: 20px;
     justify-content: space-around;
     margin-top     : -60px;
+}
+
+.likeButton{
+    background-color: white;
+}
+
+.likedButton{
+    background-color: red;
+}
+
+.summSelect{
+    width: 100px;
 }
 
 .originalButton {

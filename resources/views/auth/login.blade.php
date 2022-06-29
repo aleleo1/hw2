@@ -53,7 +53,7 @@
         
         <div class="form_remember">
 
-            <input type="checkbox" class="form-control" name="remember_token">
+          <p>Ricordati di me <input type="checkbox" class="form-control-remember" name="remember_token"> </p>  
         </div>
 
         <button class="form_submit" type="submit">Login</button>

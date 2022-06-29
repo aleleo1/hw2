@@ -7,8 +7,8 @@
 
         <div class="footerbar">
 
-            <h4>{{ auth()->user()->nome }} {{ auth()->user()->cognome }}</h4>
-            <p>{{ auth()->user()->matricola }}</p>
+            <h4 class="elem">{{ auth()->user()->nome }} {{ auth()->user()->cognome }}</h4>
+            <p class="elem">{{ auth()->user()->matricola }}</p>
             @include('layouts.includes.copy');
         </div>
     
@@ -19,8 +19,8 @@
 
     @guest
 
-        <div class="footer">
-        
+        <div class="footerbar">
+            @include('layouts.includes.copy');
         </div>
 
     @endguest

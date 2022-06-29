@@ -1,8 +1,8 @@
 <?php if(isset ($errors) && count($errors) > 0): ?>
 
-    <div class="alert alert-warning" role="alert">
+    <div >
 
-        <ul class="list-unstyled mb-0">
+        <ul >
 
             <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
@@ -26,9 +26,9 @@
 
         <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $msg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-            <div class="alert alert-warning" role="alert">
+            <div>
 
-                <i class="fa fa-check"></i>
+                <i ></i>
 
                 <?php echo e($msg); ?>
 
@@ -39,9 +39,9 @@
 
     <?php else: ?>
 
-        <div class="alert alert-warning" role="alert">
+        <div>
 
-            <i class="fa fa-check"></i>
+            <i ></i>
 
             <?php echo e($data); ?>
 
