@@ -159,11 +159,26 @@ footer {
 }
 
 .likeButton{
-    background-color: white;
+    padding: 0px;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.likeImg{
+    width: 100px;
+    height: 50px;
 }
 
 .likedButton{
-    background-color: red;
+    padding: 0px;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.likedImg{
+    width: 100px;
+    height: 50px;
+   /*  background-color: red; */
 }
 
 .summSelect{

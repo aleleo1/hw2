@@ -37,12 +37,16 @@ dislike = function (t) {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.getElementById('_token').value
         },
-        body: JSON.stringify({ id: t.dataset.attribute }),
+        body: JSON.stringify({ id: t.dataset.attribute}),
         redirect: 'follow'
     };
+
+    console.log(requestOptions, t);
     fetch('http://127.0.0.1:8000/banks/dislike', requestOptions).then(res => res.text()).then(response => {
         console.log(response);
-        viewOriginalData(document.getElementById(t.dataset.section).children);
+        const section = document.getElementById(t.dataset.section);
+        viewOriginalData(section.children);
+        section.children[1].children[0].disabled = false;
         removeOpt(t.dataset.attribute);
         updateSelCount(t.dataset.section)
         /*  window.location.reload(); */
@@ -76,11 +80,14 @@ showLiked = function (t) {
         lb.classList.remove('likeButton');
 
         lb.classList.add('likedButton');
-        lb.textContent = 'Dislike';
-
+        lb.firstChild.src='images/banks/liked.png'
+      /*   lb.firstChild.classList.remove('likeImg');
+        lb.firstChild.classList.add('likedImg'); */
+       /*  lb.textContent = ''; */
+        
         lb.addEventListener('click', (event) => {
             /*  event.preventDefault(); */
-            dislike(event.target);
+            dislike(event.currentTarget);
         });
         lb.dataset.attribute = t.dataset.attribute;
         lb.dataset.section = t.dataset.section;
@@ -144,7 +151,12 @@ toggleLikeB = function (ll, i) {
     const lb = document.getElementById('likeB' + i);
     lb.classList.remove('likedButton');
     lb.classList.add('likeButton');
-    lb.textContent = 'Like';
+      lb.textContent = ''; 
+    /* <img class="likeImg" src="images/banks/like.png" /> */
+    const img = document.createElement('img');
+    img.classList.add('likeImg');
+    img.src = "images/banks/like.png";
+    lb.appendChild(img);
     lb.addEventListener('click', () => { likeArticle(section.children) })
     /*   lb.removeEventListener('click', (event) => {
           event.preventDefault();
@@ -203,7 +215,7 @@ addLike = function (response, i) {
 
 updateSelCount = function (i) {
     let count = Array.from(document.getElementById('sel' + i).children).length;
-    document.getElementById('lab' + i).firstChild.textContent = `Riassunti piaciuti (${count}) : ` 
+    document.getElementById('lab' + i).firstChild.textContent = `Riassunti piaciuti (${count}) : `
     console.log(document.getElementById('lab' + i).firstChild.textContent);
 }
 

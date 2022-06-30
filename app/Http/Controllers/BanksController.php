@@ -74,7 +74,7 @@ return $check or $check2;
   }
 
   public function dislike(Request $request){
-    $id = $request->all()['id'];
+    $id = json_decode($request->getContent())->id;
     Like::where('id', $id)->delete();
 
   }

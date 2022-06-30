@@ -30,7 +30,7 @@
                 </div>
                 <div class='summButtons'><button class='summButton'>Riassumi</button><button class='originalButton'>Testo
                         Originale</button>
-                    <button id={{ 'likeB' . $data->ID }} class="summButton likeButton">Like</button>
+                    <button id={{ 'likeB' . $data->ID }} class="summButton likeButton"><img class="likeImg" src="images/banks/like.png" /></button>
                     {{-- {{json_encode($likes)}} --}}
 
                     {{-- {{ json_encode($likes[$data->ID]) }} --}}
