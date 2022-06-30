@@ -91,13 +91,13 @@
 
         <div class="form_question">
 
-            <input type="password" class="form-control" name="password_confirmation" value="<?php echo e(old('password_confirmation')); ?>" placeholder="Conferma Password" required="required">
+            <input type="password" class="form-control" name="conferma_password" value="<?php echo e(old('conferma_password')); ?>" placeholder="Conferma Password" required="required">
 
             <label for="floatingConfirmPassword">Conferma Password</label>
 
-            <?php if($errors->has('password_confirmation')): ?>
+            <?php if($errors->has('conferma_password')): ?>
 
-                <span class="form_error"><?php echo e($errors->first('password_confirmation')); ?></span>
+                <span class="form_error"><?php echo e($errors->first('conferma_password')); ?></span>
 
             <?php endif; ?>
 

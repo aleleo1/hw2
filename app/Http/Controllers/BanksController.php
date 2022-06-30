@@ -32,7 +32,7 @@ class BanksController extends Controller
     $cond =   $this->checkLike($data, $index)/*  ? http_response_code(500) : http_response_code(200)*/;
   /*  echo json_encode($cond); */
   /*  echo 'diobe'; */
-  return $cond ? response("il riassunto è già in raccolta o è l'originale", 403) : $this->addLike($index, $data);
+  return $cond ? response(json_encode(array("error"=>"il riassunto è già in raccolta o è l'originale")), 403) : $this->addLike($index, $data);
   /*   $this->addLike($index, $data); */
   }
 
@@ -60,7 +60,7 @@ return $check or $check2;
     $like = new Like($arr);
     $cond = $like->save();
    /*  $cond = DB::table('likes')->insert($arr); */
-    return  $cond ? response(json_encode(array('date'=>$arr['created_at'], 'id'=>$like->id)), 200) : response('errore interno, riprova', 500);
+    return  $cond ? response(json_encode(array('date'=>$arr['created_at'], 'id'=>$like->id)), 200) : response(json_encode(array('error'=>'errore interno, riprova')), 500);
   }
 
   private function getLikes(){

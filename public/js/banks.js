@@ -37,7 +37,7 @@ dislike = function (t) {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.getElementById('_token').value
         },
-        body: JSON.stringify({ id: t.dataset.attribute}),
+        body: JSON.stringify({ id: t.dataset.attribute }),
         redirect: 'follow'
     };
 
@@ -80,11 +80,11 @@ showLiked = function (t) {
         lb.classList.remove('likeButton');
 
         lb.classList.add('likedButton');
-        lb.firstChild.src='images/banks/liked.png'
-      /*   lb.firstChild.classList.remove('likeImg');
-        lb.firstChild.classList.add('likedImg'); */
-       /*  lb.textContent = ''; */
-        
+        lb.firstChild.src = 'images/banks/liked.png'
+        /*   lb.firstChild.classList.remove('likeImg');
+          lb.firstChild.classList.add('likedImg'); */
+        /*  lb.textContent = ''; */
+
         lb.addEventListener('click', (event) => {
             /*  event.preventDefault(); */
             dislike(event.currentTarget);
@@ -115,7 +115,7 @@ summarizeArticle = function (a) {
 viewOriginalData = function (a) {
     let i = a[0].innerText;
     console.log(a);
-
+    removeError(i);
     const requestOptions = {
         method: 'POST',
         headers: {
@@ -151,7 +151,7 @@ toggleLikeB = function (ll, i) {
     const lb = document.getElementById('likeB' + i);
     lb.classList.remove('likedButton');
     lb.classList.add('likeButton');
-      lb.textContent = ''; 
+    lb.textContent = '';
     /* <img class="likeImg" src="images/banks/like.png" /> */
     const img = document.createElement('img');
     img.classList.add('likeImg');
@@ -178,6 +178,7 @@ likeArticle = function (data) {
     /*   console.log(data[2].children[2]); */
     let i = data[0].innerText;
     const input = data[2].children[2].innerText;
+    removeError(i);
     console.log(input);
     const requestOptions = {
         method: 'POST',
@@ -191,6 +192,12 @@ likeArticle = function (data) {
     console.log(requestOptions)
     fetch('http://127.0.0.1:8000/banks/like', requestOptions).then(async response => { return { status: response.status, res: await response.json() } })
         .then(result => { console.log(result); result.status === 200 ? addLike(result, i) : showError(result, i)/*  window.location.reload(); */ }).catch(error => console.log('error', error));
+}
+
+removeError = function (i) {
+    const section = document.getElementById(i);
+    const p = document.getElementById('error' + i);
+    if (p) section.children[1].removeChild(p)
 }
 
 addLike = function (response, i) {
@@ -213,6 +220,7 @@ addLike = function (response, i) {
     updateSelCount(i)
 };
 
+
 updateSelCount = function (i) {
     let count = Array.from(document.getElementById('sel' + i).children).length;
     document.getElementById('lab' + i).firstChild.textContent = `Riassunti piaciuti (${count}) : `
@@ -221,6 +229,14 @@ updateSelCount = function (i) {
 
 showError = function (result, i) {
     console.log(result);
+    const section = document.getElementById(i);
+    console.log(section);
+    const p = document.createElement('p');
+    p.id = 'error' + i;
+    p.classList.add('error');
+    p.textContent = result.res.error;
+    section.children[1].appendChild(p);
+
 }
 
 sendOpenAIreq = function (data, field) {
@@ -233,7 +249,7 @@ sendOpenAIreq = function (data, field) {
         body: data,
         redirect: 'follow'
     };
-
+    removeError(field);
     fetch('http://127.0.0.1:8000/banks/openai', requestOptions)
         .then(response => { console.log(response); return response.status === 404 ? false : response.text() })
         .then(result => { console.log(result); if (result) { handleOpenRes(result, field) } else return; })

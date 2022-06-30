@@ -93,13 +93,13 @@
 
         <div class="form_question">
 
-            <input type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Conferma Password" required="required">
+            <input type="password" class="form-control" name="conferma_password" value="{{ old('conferma_password') }}" placeholder="Conferma Password" required="required">
 
             <label for="floatingConfirmPassword">Conferma Password</label>
 
-            @if ($errors->has('password_confirmation'))
+            @if ($errors->has('conferma_password'))
 
-                <span class="form_error">{{ $errors->first('password_confirmation') }}</span>
+                <span class="form_error">{{ $errors->first('conferma_password') }}</span>
 
             @endif
 

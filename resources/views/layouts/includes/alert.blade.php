@@ -6,7 +6,7 @@
 
             @foreach($errors->all() as $error)
 
-                <li>{{ $error }}</li>
+                <li class="form_error">{{ $error }}</li>
 
             @endforeach
 
