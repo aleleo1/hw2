@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use App\Models\Like;
 use App\Models\Sumup;
+
 class BanksController extends Controller
 {
   public function show()
   {
     $data = Sumup::get();
-    return view('home.banks', ['data' => $data, 'likes'=>$this->getLikes()]);
+    return view('home.banks', ['data' => $data, 'likes' => $this->getLikes()]);
   }
 
   public function original(Request $request)
@@ -30,58 +31,60 @@ class BanksController extends Controller
     $index = $content->id;
     $data = $content->data;
     $cond =   $this->checkLike($data, $index)/*  ? http_response_code(500) : http_response_code(200)*/;
-  /*  echo json_encode($cond); */
-  /*  echo 'diobe'; */
-  return $cond ? response(json_encode(array("error"=>"il riassunto è già in raccolta o è l'originale")), 403) : $this->addLike($index, $data);
-  /*   $this->addLike($index, $data); */
+    /*  echo json_encode($cond); */
+    /*  echo 'diobe'; */
+    return $cond ? response(json_encode(array("error" => "il riassunto è già in raccolta o è l'originale")), 403) : $this->addLike($index, $data);
+    /*   $this->addLike($index, $data); */
   }
 
   private function checkLike(string $data, $section)
   {
 
     $check = DB::table('likes')->where('data', $data)->where('user_id', auth()->user()->matricola)->value('id');
-   /*  $check = Like::where('data', $data)->where('user_id', auth()->user()->matricola)->value('id'); */
+    /*  $check = Like::where('data', $data)->where('user_id', auth()->user()->matricola)->value('id'); */
     $s = Sumup::where('ID', $section)->value('DATA');
-    $str2=str_replace(["\n", " "],"",$s);
-    $str =str_replace(["\n", " "],"",$data);
-   /*  echo json_encode(array('data'=>$data, 'check'=>$str, 'comp'=> strcmp($str, $str2))); */
-   /*  echo $data; */
+    $str2 = str_replace(["\n", " "], "", $s);
+    $str = str_replace(["\n", " "], "", $data);
+    /*  echo json_encode(array('data'=>$data, 'check'=>$str, 'comp'=> strcmp($str, $str2))); */
+    /*  echo $data; */
     /* return  $check2 === $data ? true : false; */
-/*    echo $check; */
-$check2 = strcmp($str, $str2) === 0;
-return $check or $check2;
+    /*    echo $check; */
+    $check2 = strcmp($str, $str2) === 0;
+    return $check or $check2;
   }
 
   private function addLike($id, string $data)
   {
     $uid = auth()->user()->matricola;
-      
-    $arr = array('user_id'=>$uid, 'data'=>$data, 'section'=>(int)$id, 'created_at'=>Carbon::now());
+
+    $arr = array('user_id' => $uid, 'data' => $data, 'section' => (int)$id, 'created_at' => Carbon::now());
     $like = new Like($arr);
     $cond = $like->save();
-   /*  $cond = DB::table('likes')->insert($arr); */
-    return  $cond ? response(json_encode(array('date'=>$arr['created_at'], 'id'=>$like->id)), 200) : response(json_encode(array('error'=>'errore interno, riprova')), 500);
+    /*  $cond = DB::table('likes')->insert($arr); */
+    return  $cond ? response(json_encode(array('date' => $arr['created_at'], 'id' => $like->id)), 200) : response(json_encode(array('error' => 'errore interno, riprova')), 500);
   }
 
-  private function getLikes(){
+  private function getLikes()
+  {
     $uid = auth()->user()->matricola;
-    $likes = Like::select('section','id', 'created_at')->where('user_id', $uid)->get();
+    $likes = Like::select('section', 'id', 'created_at')->where('user_id', $uid)->get();
     $arr = array();
-    foreach($likes as $like){
-   isset($arr[(int)$like->section]) ? array_push($arr[(int)$like->section], ['id'=>$like->id,'date'=>$like->created_at]) :   $arr[(int)$like->section]  =  array(['id'=>$like->id, 'date'=>$like->created_at]);
+    foreach ($likes as $like) {
+      isset($arr[(int)$like->section]) ? array_push($arr[(int)$like->section], ['id' => $like->id, 'date' => $like->created_at]) :   $arr[(int)$like->section]  =  array(['id' => $like->id, 'date' => $like->created_at]);
     }
     return $arr;
   }
 
-  public function dislike(Request $request){
+  public function dislike(Request $request)
+  {
     $id = json_decode($request->getContent())->id;
     Like::where('id', $id)->delete();
-
   }
 
-  public function show_like(Request $request){
- /*    echo json_encode($request); */
- /*    $id = $request->all()['id']; */
+  public function show_like(Request $request)
+  {
+    /*    echo json_encode($request); */
+    /*    $id = $request->all()['id']; */
     $id = json_decode($request->getContent())->id;
     $text = Like::where('id', $id)->value('data');
     echo $text;
@@ -89,7 +92,7 @@ return $check or $check2;
 
   public function openai_sumup(Request $request)
   {
-    $OPENAI_API_KEY = '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';
+    $OPENAI_API_KEY = '';
     header('Content-Type: text/plain');
     /* echo $request->getContent(); */
     $prompt = $request->getContent() . '\nTl;dr:';
@@ -122,7 +125,7 @@ return $check or $check2;
 
     if ($response) {
       echo $response;
-    } else  http_response_code(404);
+    } else  response('error', 500);
 
     curl_close($curl);
   }

@@ -251,10 +251,20 @@ sendOpenAIreq = function (data, field) {
     };
     removeError(field);
     fetch('http://127.0.0.1:8000/banks/openai', requestOptions)
-        .then(response => { console.log(response); return response.status === 404 ? false : response.text() })
+        .then(response => { console.log(response); return response.status === 404 ? showSumError(field) : response.text() })
         .then(result => { console.log(result); if (result) { handleOpenRes(result, field) } else return; })
         .catch(error => console.log('error', error));
 
+}
+
+showSumError = function (i, text = 'il riassunto non è disponibile') {
+    const section = document.getElementById(i);
+    console.log(section);
+    const p = document.createElement('p');
+    p.id = 'error' + i;
+    p.classList.add('error');
+    p.textContent = text;
+    section.children[1].appendChild(p);
 }
 
 const handleOpenRes = function (result, field) {
@@ -263,11 +273,16 @@ const handleOpenRes = function (result, field) {
     console.log(toparse);
     /* console.log(JSON.parse(toparse)); */
     const res = JSON.parse(toparse);
-    const sumup = remove_linebreaks(res.choices[0].text);
-    /* console.log(document.getElementById(field.toString())); */
-    const section = document.getElementById(field.toString());
-    const p = section.children[2].children[2];
-    console.log(p);
-    p.textContent = sumup;
+    if (res.error) {
+        showSumError(field)
+    }
+    else {
+        const sumup = remove_linebreaks(res.choices[0].text);
+        /* console.log(document.getElementById(field.toString())); */
+        const section = document.getElementById(field.toString());
+        const p = section.children[2].children[2];
+        console.log(p);
+        p.textContent = sumup;
+    }
 }
 
